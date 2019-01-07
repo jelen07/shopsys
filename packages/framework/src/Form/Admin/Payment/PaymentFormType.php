@@ -10,6 +10,7 @@ use Shopsys\FrameworkBundle\Form\GroupType;
 use Shopsys\FrameworkBundle\Form\ImageUploadType;
 use Shopsys\FrameworkBundle\Form\Locale\LocalizedType;
 use Shopsys\FrameworkBundle\Form\PriceTableType;
+use Shopsys\FrameworkBundle\Form\Transformers\StringToDecimalTransformer;
 use Shopsys\FrameworkBundle\Model\Payment\Payment;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentData;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentFacade;
@@ -173,6 +174,7 @@ class PaymentFormType extends AbstractType
                 'currencies' => $this->currencyFacade->getAllIndexedById(),
                 'base_prices' => $payment !== null ? $this->paymentFacade->getIndependentBasePricesIndexedByCurrencyId($payment) : [],
             ]);
+        $builderPriceGroup->get('pricesByCurrencyId')->addModelTransformer(new StringToDecimalTransformer());
 
         $builder
             ->add($builderBasicInformationGroup)

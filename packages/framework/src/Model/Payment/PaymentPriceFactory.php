@@ -2,6 +2,7 @@
 
 namespace Shopsys\FrameworkBundle\Model\Payment;
 
+use Litipk\BigNumbers\Decimal;
 use Shopsys\FrameworkBundle\Component\EntityExtension\EntityNameResolver;
 use Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency;
 
@@ -23,13 +24,13 @@ class PaymentPriceFactory implements PaymentPriceFactoryInterface
     /**
      * @param \Shopsys\FrameworkBundle\Model\Payment\Payment $payment
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency $currency
-     * @param string $price
+     * @param \Litipk\BigNumbers\Decimal $price
      * @return \Shopsys\FrameworkBundle\Model\Payment\PaymentPrice
      */
     public function create(
         Payment $payment,
         Currency $currency,
-        string $price
+        Decimal $price
     ): PaymentPrice {
         $classData = $this->entityNameResolver->resolve(PaymentPrice::class);
 

@@ -3,6 +3,7 @@
 namespace Shopsys\FrameworkBundle\Model\Payment;
 
 use Doctrine\ORM\Mapping as ORM;
+use Litipk\BigNumbers\Decimal;
 use Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency;
 
 /**
@@ -30,9 +31,9 @@ class PaymentPrice
     protected $currency;
 
     /**
-     * @var string
+     * @var \Litipk\BigNumbers\Decimal
      *
-     * @ORM\Column(type="decimal", precision=20, scale=6)
+     * @ORM\Column(type="decimal_object", precision=20, scale=6)
      */
     protected $price;
 
@@ -65,17 +66,17 @@ class PaymentPrice
     }
 
     /**
-     * @return string
+     * @return \Litipk\BigNumbers\Decimal
      */
-    public function getPrice()
+    public function getPrice(): Decimal
     {
         return $this->price;
     }
 
     /**
-     * @param string $price
+     * @param \Litipk\BigNumbers\Decimal $price
      */
-    public function setPrice($price)
+    public function setPrice(Decimal $price)
     {
         $this->price = $price;
     }

@@ -2,6 +2,7 @@
 
 namespace Tests\FrameworkBundle\Unit\Model\Payment;
 
+use Litipk\BigNumbers\Decimal;
 use PHPUnit\Framework\TestCase;
 use Shopsys\FrameworkBundle\Component\EntityExtension\EntityNameResolver;
 use Shopsys\FrameworkBundle\Model\Payment\Payment;
@@ -105,7 +106,7 @@ class PaymentPriceCalculationTest extends TestCase
         $paymentData->name = ['cs' => 'paymentName'];
         $paymentData->vat = $vat;
         $payment = new Payment($paymentData);
-        $payment->setPrice(new PaymentPriceFactory(new EntityNameResolver([])), $currency, $inputPrice);
+        $payment->setPrice(new PaymentPriceFactory(new EntityNameResolver([])), $currency, Decimal::create($inputPrice));
 
         $price = $paymentPriceCalculation->calculateIndependentPrice($payment, $currency);
 
@@ -162,7 +163,7 @@ class PaymentPriceCalculationTest extends TestCase
         $paymentData->name = ['cs' => 'paymentName'];
         $paymentData->vat = $vat;
         $payment = new Payment($paymentData);
-        $payment->setPrice(new PaymentPriceFactory(new EntityNameResolver([])), $currency, $inputPrice);
+        $payment->setPrice(new PaymentPriceFactory(new EntityNameResolver([])), $currency, Decimal::create($inputPrice));
 
         $price = $paymentPriceCalculation->calculatePrice($payment, $currency, $productsPrice, 1);
 

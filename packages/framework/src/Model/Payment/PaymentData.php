@@ -47,7 +47,7 @@ class PaymentData
     public $czkRounding;
 
     /**
-     * @var string[]
+     * @var \Litipk\BigNumbers\Decimal[]
      */
     public $pricesByCurrencyId;
 

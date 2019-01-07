@@ -175,7 +175,7 @@ class PaymentFacade
 
     /**
      * @param \Shopsys\FrameworkBundle\Model\Payment\Payment $payment
-     * @param string[] $pricesByCurrencyId
+     * @param \Litipk\BigNumbers\Decimal[] $pricesByCurrencyId
      */
     protected function updatePaymentPrices(Payment $payment, $pricesByCurrencyId)
     {

@@ -2,6 +2,7 @@
 
 namespace Tests\ShopBundle\Functional\Model\Pricing;
 
+use Litipk\BigNumbers\Decimal;
 use Shopsys\FrameworkBundle\Component\Setting\Setting;
 use Shopsys\FrameworkBundle\DataFixtures\Demo\CurrencyDataFixture;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface;
@@ -97,7 +98,7 @@ class InputPriceRecalculationSchedulerTest extends TransactionFunctionalTestCase
 
         $paymentData = $paymentDataFactory->create();
         $paymentData->name = ['cs' => 'name'];
-        $paymentData->pricesByCurrencyId = [$currency1->getId() => $inputPriceWithVat, $currency2->getId() => $inputPriceWithVat];
+        $paymentData->pricesByCurrencyId = [$currency1->getId() => Decimal::create($inputPriceWithVat), $currency2->getId() => Decimal::create($inputPriceWithVat)];
         $paymentData->vat = $vat;
         /** @var \Shopsys\ShopBundle\Model\Payment\Payment $payment */
         $payment = $paymentFacade->create($paymentData);
@@ -124,7 +125,7 @@ class InputPriceRecalculationSchedulerTest extends TransactionFunctionalTestCase
         $em->refresh($payment);
         $em->refresh($transport);
 
-        $this->assertSame(round($inputPriceWithoutVat, 6), round($payment->getPrice($currency1)->getPrice(), 6));
+        $this->assertEquals(Decimal::create(round($inputPriceWithoutVat, 6)), (string)$payment->getPrice($currency1)->getPrice()->round(6));
         $this->assertSame(round($inputPriceWithoutVat, 6), round($transport->getPrice($currency1)->getPrice(), 6));
     }
 
@@ -173,7 +174,7 @@ class InputPriceRecalculationSchedulerTest extends TransactionFunctionalTestCase
 
         $paymentData = $paymentDataFactory->create();
         $paymentData->name = ['cs' => 'name'];
-        $paymentData->pricesByCurrencyId = [$currency1->getId() => $inputPriceWithoutVat, $currency2->getId() => $inputPriceWithoutVat];
+        $paymentData->pricesByCurrencyId = [$currency1->getId() => Decimal::create($inputPriceWithoutVat), $currency2->getId() => Decimal::create($inputPriceWithoutVat)];
         $paymentData->vat = $vat;
         /** @var \Shopsys\ShopBundle\Model\Payment\Payment $payment */
         $payment = $paymentFacade->create($paymentData);
@@ -200,7 +201,7 @@ class InputPriceRecalculationSchedulerTest extends TransactionFunctionalTestCase
         $em->refresh($payment);
         $em->refresh($transport);
 
-        $this->assertSame(round($inputPriceWithVat, 6), round($payment->getPrice($currency1)->getPrice(), 6));
+        $this->assertEquals(Decimal::create(round($inputPriceWithVat, 6)), $payment->getPrice($currency1)->getPrice()->round(6));
         $this->assertSame(round($inputPriceWithVat, 6), round($transport->getPrice($currency1)->getPrice(), 6));
     }
 }

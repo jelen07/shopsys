@@ -5,6 +5,7 @@ namespace Shopsys\FrameworkBundle\Model\Pricing;
 use Closure;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
+use Litipk\BigNumbers\Decimal;
 use Shopsys\FrameworkBundle\Model\Payment\Payment;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentPriceCalculation;
 use Shopsys\FrameworkBundle\Model\Transport\Transport;
@@ -94,7 +95,7 @@ class InputPriceRecalculator
                     $payment->getVat()->getPercent()
                 );
 
-                $paymentInputPrice->setPrice($newInputPrice);
+                $paymentInputPrice->setPrice(Decimal::fromString($newInputPrice));
             }
         });
     }

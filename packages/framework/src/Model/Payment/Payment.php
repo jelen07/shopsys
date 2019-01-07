@@ -5,6 +5,7 @@ namespace Shopsys\FrameworkBundle\Model\Payment;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Litipk\BigNumbers\Decimal;
 use Prezent\Doctrine\Translatable\Annotation as Prezent;
 use Shopsys\FrameworkBundle\Component\Grid\Ordering\OrderableEntityInterface;
 use Shopsys\FrameworkBundle\Model\Localization\AbstractTranslatableEntity;
@@ -190,12 +191,12 @@ class Payment extends AbstractTranslatableEntity implements OrderableEntityInter
     /**
      * @param \Shopsys\FrameworkBundle\Model\Payment\PaymentPriceFactoryInterface $paymentPriceFactory
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency $currency
-     * @param string $price
+     * @param \Litipk\BigNumbers\Decimal $price
      */
     public function setPrice(
         PaymentPriceFactoryInterface $paymentPriceFactory,
         Currency $currency,
-        $price
+        Decimal $price
     ) {
         foreach ($this->prices as $paymentInputPrice) {
             if ($paymentInputPrice->getCurrency() === $currency) {
