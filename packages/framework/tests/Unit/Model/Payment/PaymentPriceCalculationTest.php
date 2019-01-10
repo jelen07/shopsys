@@ -2,8 +2,8 @@
 
 namespace Tests\FrameworkBundle\Unit\Model\Payment;
 
-use Litipk\BigNumbers\Decimal;
 use PHPUnit\Framework\TestCase;
+use Shopsys\FrameworkBundle\Component\Decimal\Decimal;
 use Shopsys\FrameworkBundle\Component\EntityExtension\EntityNameResolver;
 use Shopsys\FrameworkBundle\Model\Payment\Payment;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentData;

@@ -5,7 +5,7 @@ namespace Shopsys\FrameworkBundle\Component\Doctrine;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\Type;
-use Litipk\BigNumbers\Decimal;
+use Shopsys\FrameworkBundle\Component\Decimal\Decimal;
 
 class DecimalObjectType extends Type
 {
@@ -53,7 +53,9 @@ class DecimalObjectType extends Type
         try {
             return Decimal::fromString($value);
         } catch (\Exception $e) {
-            throw ConversionException::conversionFailedFormat($value, $this->getName(), Decimal::CLASSIC_DECIMAL_NUMBER_REGEXP, $e);
+            $expectedFormat = \Litipk\BigNumbers\Decimal::CLASSIC_DECIMAL_NUMBER_REGEXP;
+
+            throw ConversionException::conversionFailedFormat($value, $this->getName(), $expectedFormat, $e);
         }
     }
 }

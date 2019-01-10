@@ -3,7 +3,7 @@
 namespace Shopsys\FrameworkBundle\Model\Pricing\Currency;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Litipk\BigNumbers\Decimal;
+use Shopsys\FrameworkBundle\Component\Decimal\Decimal;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Model\Order\OrderRepository;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentPriceFactoryInterface;
@@ -263,7 +263,7 @@ class CurrencyFacade
     {
         $toFlush = [];
         foreach ($this->paymentRepository->getAll() as $payment) {
-            $paymentPrice = $this->paymentPriceFactory->create($payment, $currency, Decimal::fromInteger(0));
+            $paymentPrice = $this->paymentPriceFactory->create($payment, $currency, Decimal::fromInt(0));
             $this->em->persist($paymentPrice);
             $toFlush[] = $paymentPrice;
         }

@@ -60,6 +60,7 @@
         "joschi127/doctrine-entity-override-bundle": "^0.5.0",
         "knplabs/knp-menu-bundle": "^2.2.1",
         "league/flysystem": "^1.0",
+        "litipk/php-bignumbers": "^0.8.6",
         "oneup/flysystem-bundle": "^3.0",
         "nikic/php-parser": "^3.1",
         "presta/sitemap-bundle": "^1.5.3",

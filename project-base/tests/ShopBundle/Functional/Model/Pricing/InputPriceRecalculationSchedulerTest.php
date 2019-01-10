@@ -2,7 +2,7 @@
 
 namespace Tests\ShopBundle\Functional\Model\Pricing;
 
-use Litipk\BigNumbers\Decimal;
+use Shopsys\FrameworkBundle\Component\Decimal\Decimal;
 use Shopsys\FrameworkBundle\Component\Setting\Setting;
 use Shopsys\FrameworkBundle\DataFixtures\Demo\CurrencyDataFixture;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface;

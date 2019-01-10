@@ -2,13 +2,13 @@
 
 namespace Shopsys\FrameworkBundle\Form\Transformers;
 
-use Litipk\BigNumbers\Decimal;
+use Shopsys\FrameworkBundle\Component\Decimal\Decimal;
 use Symfony\Component\Form\DataTransformerInterface;
 
 class StringToDecimalTransformer implements DataTransformerInterface
 {
     /**
-     * @param \Litipk\BigNumbers\Decimal[]|\Litipk\BigNumbers\Decimal|null $value
+     * @param \Shopsys\FrameworkBundle\Component\Decimal\Decimal[]|\Shopsys\FrameworkBundle\Component\Decimal\Decimal|null $value
      * @return string[]|string|null
      */
     public function transform($value)
@@ -21,7 +21,7 @@ class StringToDecimalTransformer implements DataTransformerInterface
     }
 
     /**
-     * @param \Litipk\BigNumbers\Decimal|null $value
+     * @param \Shopsys\FrameworkBundle\Component\Decimal\Decimal|null $value
      * @return string|null
      */
     public function transformSingleValue($value)
@@ -32,7 +32,7 @@ class StringToDecimalTransformer implements DataTransformerInterface
     /**
      * @param mixed $value
      * @param string[]|string|null
-     * @return \Litipk\BigNumbers\Decimal[]|\Litipk\BigNumbers\Decimal|null $value
+     * @return \Shopsys\FrameworkBundle\Component\Decimal\Decimal[]|\Shopsys\FrameworkBundle\Component\Decimal\Decimal|null $value
      */
     public function reverseTransform($value)
     {
@@ -46,7 +46,7 @@ class StringToDecimalTransformer implements DataTransformerInterface
     /**
      * @param mixed $value
      * @param string|null
-     * @return \Litipk\BigNumbers\Decimal|null $value
+     * @return \Shopsys\FrameworkBundle\Component\Decimal\Decimal|null $value
      */
     public function reverseTransformSingleValue($value)
     {

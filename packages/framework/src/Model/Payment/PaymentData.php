@@ -47,7 +47,7 @@ class PaymentData
     public $czkRounding;
 
     /**
-     * @var \Litipk\BigNumbers\Decimal[]
+     * @var \Shopsys\FrameworkBundle\Component\Decimal\Decimal[]
      */
     public $pricesByCurrencyId;
 
