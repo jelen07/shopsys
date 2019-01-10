@@ -6,6 +6,9 @@ use Litipk\BigNumbers\Decimal as InnerDecimal;
 
 class Decimal
 {
+    private const SCALE_INNER = 32;
+    private const SCALE_TO_STRING = 16;
+
     /**
      * @var \Litipk\BigNumbers\Decimal
      */
@@ -29,7 +32,7 @@ class Decimal
             $value = $value->inner;
         }
 
-        return new self(InnerDecimal::create($value));
+        return new self(InnerDecimal::create($value, self::SCALE_INNER));
     }
 
     /**
@@ -38,7 +41,7 @@ class Decimal
      */
     public static function fromString(string $string): self
     {
-        return new self(InnerDecimal::fromString($string));
+        return new self(InnerDecimal::fromString($string, self::SCALE_INNER));
     }
 
     /**
@@ -56,7 +59,7 @@ class Decimal
      */
     public static function fromFloat(float $float): self
     {
-        return new self(InnerDecimal::fromFloat($float));
+        return new self(InnerDecimal::fromFloat($float, self::SCALE_INNER));
     }
 
     /**
@@ -65,7 +68,7 @@ class Decimal
      */
     public function add(self $decimal): self
     {
-        return new self($this->inner->add($decimal->inner));
+        return new self($this->inner->add($decimal->inner, self::SCALE_INNER));
     }
 
     /**
@@ -74,7 +77,7 @@ class Decimal
      */
     public function subtract(self $decimal): self
     {
-        return new self($this->inner->sub($decimal->inner));
+        return new self($this->inner->sub($decimal->inner, self::SCALE_INNER));
     }
 
     /**
@@ -83,7 +86,7 @@ class Decimal
      */
     public function divide(self $decimal): self
     {
-        return new self($this->inner->div($decimal->inner));
+        return new self($this->inner->div($decimal->inner, self::SCALE_INNER));
     }
 
     /**
@@ -92,7 +95,7 @@ class Decimal
      */
     public function multiply(self $decimal): self
     {
-        return new self($this->inner->mul($decimal->inner));
+        return new self($this->inner->mul($decimal->inner, self::SCALE_INNER));
     }
 
     /**
@@ -101,7 +104,7 @@ class Decimal
      */
     public function equals(self $decimal): bool
     {
-        return $this->inner->equals($decimal->inner);
+        return $this->inner->equals($decimal->inner, self::SCALE_INNER);
     }
 
     /**
@@ -110,7 +113,7 @@ class Decimal
      */
     public function isGreaterThan(self $decimal): bool
     {
-        return $this->inner->isGreaterThan($decimal->inner);
+        return $this->inner->isGreaterThan($decimal->inner, self::SCALE_INNER);
     }
 
     /**
@@ -119,7 +122,7 @@ class Decimal
      */
     public function isGreaterOrEqualTo(self $decimal): bool
     {
-        return $this->inner->isGreaterOrEqualTo($decimal->inner);
+        return $this->inner->isGreaterOrEqualTo($decimal->inner, self::SCALE_INNER);
     }
 
     /**
@@ -128,7 +131,7 @@ class Decimal
      */
     public function isLessThan(self $decimal): bool
     {
-        return $this->inner->isLessThan($decimal->inner);
+        return $this->inner->isLessThan($decimal->inner, self::SCALE_INNER);
     }
 
     /**
@@ -137,7 +140,7 @@ class Decimal
      */
     public function isLessOrEqualTo(self $decimal): bool
     {
-        return $this->inner->isLessOrEqualTo($decimal->inner);
+        return $this->inner->isLessOrEqualTo($decimal->inner, self::SCALE_INNER);
     }
 
     /**
@@ -150,10 +153,28 @@ class Decimal
     }
 
     /**
+     * @param int $precision
+     * @return \Shopsys\FrameworkBundle\Component\Decimal\Decimal
+     */
+    public function floor(int $precision = 0): self
+    {
+        return new self($this->inner->floor($precision));
+    }
+
+    /**
+     * @param int $precision
+     * @return \Shopsys\FrameworkBundle\Component\Decimal\Decimal
+     */
+    public function ceil(int $precision = 0): self
+    {
+        return new self($this->inner->ceil($precision));
+    }
+
+    /**
      * @return string
      */
     public function __toString(): string
     {
-        return (string)$this->inner;
+        return (string)$this->inner->round(self::SCALE_TO_STRING);
     }
 }
