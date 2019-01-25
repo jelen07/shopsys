@@ -42,7 +42,7 @@ class TransportData
     public $payments;
 
     /**
-     * @var string[]
+     * @var \Money\Money[]
      */
     public $pricesByCurrencyId;
 

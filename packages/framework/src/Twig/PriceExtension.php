@@ -5,6 +5,12 @@ namespace Shopsys\FrameworkBundle\Twig;
 use CommerceGuys\Intl\Currency\CurrencyRepositoryInterface;
 use CommerceGuys\Intl\Formatter\NumberFormatter;
 use CommerceGuys\Intl\NumberFormat\NumberFormatRepositoryInterface;
+use Money\Currencies\CurrencyList;
+use Money\Formatter\DecimalMoneyFormatter;
+use Money\Formatter\IntlLocalizedDecimalFormatter;
+use Money\Formatter\IntlMoneyFormatter;
+use Money\Money;
+use NumberFormatter as PhpNumberFormatter;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Model\Localization\Localization;
 use Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency;
@@ -71,6 +77,10 @@ class PriceExtension extends Twig_Extension
     {
         return [
             new Twig_SimpleFilter(
+                'money',
+                [$this, 'moneyFilter']
+            ),
+            new Twig_SimpleFilter(
                 'price',
                 [$this, 'priceFilter']
             ),
@@ -133,6 +143,20 @@ class PriceExtension extends Twig_Extension
                 [$this, 'getCurrencyCodeByDomainId']
             ),
         ];
+    }
+
+    /**
+     * @param \Money\Money $money
+     * @param int $style
+     * @return string
+     */
+    public function moneyFilter(Money $money, int $style = \NumberFormatter::CURRENCY)
+    {
+        $currencies = new CurrencyList(['CZK'=>2,'EUR'=>2,'USD'=>2]);
+        $numberFormatter = new \NumberFormatter($this->localization->getLocale(), $style);
+        $formatter = new IntlMoneyFormatter($numberFormatter, $currencies);
+
+        return $formatter->format($money);
     }
 
     /**

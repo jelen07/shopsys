@@ -2,6 +2,8 @@
 
 namespace Shopsys\FrameworkBundle\Model\Transport;
 
+use Money\Currency;
+use Money\Money;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatFacade;
 

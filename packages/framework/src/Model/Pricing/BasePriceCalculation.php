@@ -2,6 +2,7 @@
 
 namespace Shopsys\FrameworkBundle\Model\Pricing;
 
+use Money\Money;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
 
 class BasePriceCalculation
@@ -27,7 +28,7 @@ class BasePriceCalculation
     }
 
     /**
-     * @param string $inputPrice
+     * @param string|\Money\Money $inputPrice
      * @param int $inputPriceType
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat $vat
      * @return \Shopsys\FrameworkBundle\Model\Pricing\Price
@@ -36,7 +37,7 @@ class BasePriceCalculation
     {
         $basePriceWithVat = $this->getBasePriceWithVat($inputPrice, $inputPriceType, $vat);
         $vatAmount = $this->priceCalculation->getVatAmountByPriceWithVat($basePriceWithVat, $vat);
-        $basePriceWithoutVat = $this->rounding->roundPriceWithoutVat($basePriceWithVat - $vatAmount);
+        $basePriceWithoutVat = $this->rounding->roundPriceWithoutVat($basePriceWithVat instanceof Money ? $basePriceWithVat->subtract($vatAmount) : $basePriceWithVat - $vatAmount);
 
         return new Price($basePriceWithoutVat, $basePriceWithVat);
     }
@@ -61,10 +62,10 @@ class BasePriceCalculation
     }
 
     /**
-     * @param string $inputPrice
+     * @param string|\Money\Money $inputPrice
      * @param int $inputPriceType
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat $vat
-     * @return string
+     * @return string|\Money\Money
      */
     private function getBasePriceWithVat($inputPrice, $inputPriceType, Vat $vat)
     {

@@ -3,6 +3,7 @@
 namespace Shopsys\FrameworkBundle\Model\Pricing\Currency;
 
 use Doctrine\ORM\Mapping as ORM;
+use Money\Money;
 
 /**
  * @ORM\Table(name="currencies")
@@ -93,6 +94,15 @@ class Currency
     public function setExchangeRate($exchangeRate)
     {
         $this->exchangeRate = $exchangeRate;
+    }
+
+    /**
+     * @param int $subunitAmount
+     * @return \Money\Money
+     */
+    public function createMoney(int $subunitAmount): Money
+    {
+        return new Money($subunitAmount, new \Money\Currency($this->code)); // TODO: Should Currency create Money?
     }
 
     /**

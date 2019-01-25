@@ -2,6 +2,8 @@
 
 namespace Shopsys\FrameworkBundle\Form;
 
+use Money\Currency;
+use Money\Money;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
@@ -23,14 +25,14 @@ class PriceTableType extends AbstractType
             /* @var $currency \Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency */
             $builder
                 ->add($key, MoneyType::class, [
-                    'currency' => false,
+                    'currency' => $currency->getCode(),
                     'scale' => 6,
                     'required' => true,
                     'invalid_message' => 'Please enter price in correct format (positive number with decimal separator)',
                     'constraints' => [
                         new Constraints\NotBlank(['message' => 'Please enter price']),
                         new Constraints\GreaterThanOrEqual([
-                            'value' => 0,
+                            'value' => new Money(0, new Currency($currency->getCode())),
                             'message' => 'Price must be greater or equal to {{ compared_value }}',
                         ]),
                     ],

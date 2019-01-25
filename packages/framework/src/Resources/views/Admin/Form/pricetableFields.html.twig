@@ -16,16 +16,16 @@
                 </div>
                 <div class="form-line__side">
                     <div class="form-line__item">
-                        {{ form_widget(form.children[key], { symbolAfterInput: currencySymbolByCurrencyId(currency.id) }) }}
+                        {{ form_widget(form.children[key]) }}
                     </div>
 
                     {% if base_prices[key] is defined %}
                         <div class="form-line__item--right">
                             <div class="form-line__item__price">
-                                {{ base_prices[key].priceWithoutVat|priceWithCurrencyByCurrencyId(currency.id) }}
+                                {{ base_prices[key].priceWithoutVat|money }}
                             </div>
                             <div class="form-line__item__price">
-                                <strong>{{ base_prices[key].priceWithVat|priceWithCurrencyByCurrencyId(currency.id) }}</strong>
+                                <strong>{{ base_prices[key].priceWithVat|money }}</strong>
                             </div>
                         </div>
                     {% endif %}

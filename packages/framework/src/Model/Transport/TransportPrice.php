@@ -3,6 +3,7 @@
 namespace Shopsys\FrameworkBundle\Model\Transport;
 
 use Doctrine\ORM\Mapping as ORM;
+use Money\Money;
 use Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency;
 
 /**
@@ -65,18 +66,18 @@ class TransportPrice
     }
 
     /**
-     * @return string
+     * @return \Money\Money
      */
-    public function getPrice()
+    public function getPrice(): Money
     {
-        return $this->price;
+        return $this->currency->createMoney($this->price * 100);
     }
 
     /**
-     * @param string $price
+     * @param \Money\Money $price
      */
-    public function setPrice($price)
+    public function setPrice(Money $price)
     {
-        $this->price = $price;
+        $this->price = $price->getAmount()/100;
     }
 }

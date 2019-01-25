@@ -7,3 +7,7 @@ domains:
         name: 2.shopsys
         locale: cs
         styles_directory: domain2
+
+    -   id: 3
+        name: 3.shopsys
+        locale: cs
