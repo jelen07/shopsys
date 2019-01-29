@@ -31,6 +31,8 @@ There you can find links to upgrade notes for other versions too.
     - [`Version20190121094400`](https://github.com/shopsys/shopsys/blob/master/packages/framework/src/Migrations/Version20190121094400.php <!--- TODO: change to released version instead of master -->
 
 ### Application
+- modify ErrorController to be more descriptive about error caused by active TEST environment ([#701](https://github.com/shopsys/shopsys/pull/701))
+    - modify `ErrorController::createUnableToResolveDomainResponse()` by these [changes](https://github.com/shopsys/shopsys/pull/701/files#diff-0b1aecbf82624ce474ca3cb8bd75811c).
 - if you were using `oneup/flysystembundle` for using different adapter than the local one, you must now implement `FilesystemFactoryInterface` and init the adapter by yourself.
 - *(optional)* delete dependency on `oneup/flysystembundle` from your `composer.json`
 - remove usages of inherited `OrderItem` classes ([#715](https://github.com/shopsys/shopsys/pull/715))
