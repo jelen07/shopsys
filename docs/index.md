@@ -41,6 +41,7 @@ Add:
 * [Modifying a Template in Administration](./cookbook/modifying-a-template-in-administration.md)
 * [Adding Ajax Load More Button into Pagination](./cookbook/adding-ajax-load-more-button-into-pagination.md)
 * [Implementing a basic data import](./cookbook/basic-data-import.md)
+* [Creating a Multidomain Design](./cookbook/creating-a-multidomain-design.md)
 
 ## Functional documentation
 * [Behavior of Product Variants](./functional/behavior-of-product-variants.md)
