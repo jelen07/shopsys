@@ -1,4 +1,8 @@
 .box-detail {
+    @media print {
+        .clearfix();
+    }
+
     @media @query-lg {
         .clearfix();
     }
@@ -6,6 +10,12 @@
     &__image {
         position: relative;
         margin-bottom: @margin-gap;
+
+        @media print {
+            float: left;
+            width: 40%;
+            padding-right: 20px;
+        }
 
         @media @query-lg {
             width: 50%;
@@ -21,6 +31,14 @@
             border: 1px solid @color-border;
             font-size: 0;
 
+            @media print {
+                max-width: 100%;
+                max-height: 100%;
+                padding: 0;
+
+                border: 0;
+            }
+
             img {
                 width: auto;
                 height: auto;
@@ -30,6 +48,11 @@
 
     &__info {
         margin-bottom: @margin-gap;
+
+        @media print {
+            float: left;
+            width: 60%;
+        }
 
         @media @query-lg {
             width: 50%;

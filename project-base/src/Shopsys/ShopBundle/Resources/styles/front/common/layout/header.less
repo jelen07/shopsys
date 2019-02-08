@@ -10,6 +10,10 @@
     flex-wrap: wrap;
     align-items: center;
 
+    @media print {
+        margin-top: 15px;
+    }
+
     @media @query-lg {
         padding-bottom: 20px;
     }
@@ -19,6 +23,11 @@
 .header__logo {
     width: 100%;
     padding: 10px;
+
+    @media print {
+        width: auto;
+        padding: 0;
+    }
 
     @media @query-lg {
         flex: 1;
@@ -34,6 +43,10 @@
     margin: 10px 0;
     order: 2;
 
+    @media print {
+        display: none;
+    }
+
     @media @query-lg {
         order: 2;
         width: 280px;
@@ -48,6 +61,10 @@
 // Right part of header with cart info
 .header__cart {
     width: @header-cart-width;
+
+    @media print {
+        display: none;
+    }
 
     @media @query-lg {
         padding-left: 20px;
@@ -85,6 +102,10 @@
     text-align: right;
 
     @media @query-lg {
+        display: none;
+    }
+
+    @media print {
         display: none;
     }
 }

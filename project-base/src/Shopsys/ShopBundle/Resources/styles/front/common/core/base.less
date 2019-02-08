@@ -26,6 +26,12 @@ table, tr, td, th, input, textarea {
     }
 }
 
+form {
+    @media print {
+        display: none;
+    }
+}
+
 fieldset {
     border: 0;
     margin: 0;
@@ -195,6 +201,11 @@ a {
     cursor: pointer;
     outline: none;
     transition: @transition color;
+
+    @media print {
+        text-decoration: none;
+        color: @color-0;
+    }
 
     &:hover {
         text-decoration: none;

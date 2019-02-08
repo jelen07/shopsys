@@ -13,15 +13,31 @@
 
         font-size: @font-size;
 
+        @media print {
+            padding-left: 0;
+        }
+
         &--separator {
             padding-left: 0;
             padding-right: 0;
 
             font-size: 10px;
+
+            @media print {
+                padding-right: @box-breadcrumb-padding-horizontal;
+
+                &:first-of-type {
+                    display: none;
+                }
+            }
         }
 
         &--icon {
             text-decoration: none;
+
+            @media print {
+                display: none;
+            }
         }
     }
 }

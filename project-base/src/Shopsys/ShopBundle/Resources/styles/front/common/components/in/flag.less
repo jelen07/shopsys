@@ -9,6 +9,10 @@
     left: @in-flag-position-left;
     .clearfix();
 
+    @media print {
+        display: none;
+    }
+
     &--in-list {
         top: @in-flag-in-list-position-top;
         left: @in-flag-in-list-position-left;

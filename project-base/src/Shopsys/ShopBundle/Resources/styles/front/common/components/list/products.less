@@ -23,6 +23,14 @@
     margin-bottom: @margin-gap;
     margin-left: -@list-products-item-gap;
 
+    @media print {
+        display: block;
+        list-style-type: disc;
+        list-style-position: outside;
+        margin: 1em 0;
+        padding-left: 40px;
+    }
+
     .is-no-flex & {
         display: block;
         .clearfix();
@@ -34,6 +42,12 @@
         flex-direction: column;
         margin-bottom: @margin-gap;
         padding-left: @list-products-item-gap;
+
+        @media print {
+            display: list-item;
+            margin-bottom: 0;
+            padding-left: 0;
+        }
 
         .is-no-flex & {
             display: block;
@@ -112,6 +126,10 @@
             display: flex;
             flex-direction: column;
 
+            @media print {
+                padding: 0;
+            }
+
             .is-no-flex & {
                 display: block;
             }
@@ -146,6 +164,16 @@
             color: @color-link;
             transition: @transition color;
 
+            @media print {
+                .in-tab & {
+                    display: block;
+                    margin-bottom: 0;
+                    color: @color-0;
+
+                    text-align: left;
+                }
+            }
+
             .is-no-flex & {
                 .eliminate-lines(@list-products-item-title-line-height, 2);
             }
@@ -160,6 +188,12 @@
             position: relative;
             margin-bottom: @list-products-item-inner-gap;
 
+            @media print {
+                .in-tab & {
+                    display: none;
+                }
+            }
+
             img {
                 .center-image();
             }
@@ -172,6 +206,12 @@
             width: 100%;
             margin-bottom: @list-products-item-inner-gap;
 
+            @media print {
+                .in-tab & {
+                    display: none;
+                }
+            }
+
             .is-no-flex & {
                 display: block;
                 .clearfix();
@@ -183,6 +223,11 @@
                 margin-bottom: @list-products-item-inner-gap;
 
                 font-size: 12px;
+
+                @media print {
+                    height: auto;
+                    overflow: auto;
+                }
             }
 
             &__price {
@@ -200,10 +245,18 @@
                     font-size: 12px;
                     color: @color-price;
 
+                    @media print {
+                        color: @color-0;
+                    }
+
                     &--main {
                         font-size: 16px;
                         font-weight: bold;
                         color: @color-price-main;
+
+                        @media print {
+                            color: @color-0;
+                        }
                     }
                 }
             }
@@ -215,6 +268,13 @@
 
                 font-size: 12px;
 
+                @media print {
+                    margin-top: 10px;
+                    padding-left: 0;
+
+                    text-align: left;
+                }
+
                 .is-no-flex & {
                     float: right;
                     width: 100%/2;
@@ -224,6 +284,10 @@
 
         &__action {
             text-align: center;
+
+            @media print {
+                display: none;
+            }
         }
     }
 }

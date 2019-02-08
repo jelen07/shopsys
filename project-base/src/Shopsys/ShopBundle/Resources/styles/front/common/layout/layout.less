@@ -42,6 +42,9 @@ img {
         background: @web-footer-background;
         transition: @transition padding;
 
+        @media print {
+            display: none;
+        }
 
         &--with-cookies {
             padding-bottom: @web-footer-with-cookies-margin-bottom;

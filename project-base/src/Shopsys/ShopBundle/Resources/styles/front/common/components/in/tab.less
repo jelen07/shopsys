@@ -43,6 +43,17 @@
             color: @color-base;
             font-weight: bold;
 
+            @media print {
+                padding: 0;
+                border: 0;
+
+                font-size: 28px;
+                color: @color-0;
+
+                .svg {
+                    display: none;
+                }
+            }
 
             @media @query-lg {
                 display: none;
@@ -59,6 +70,10 @@
             &.active {
                 color: @color-primary;
 
+                @media print {
+                    color: @color-0;
+                }
+
                 .svg {
                     transform: rotate(180deg);
                 }
@@ -67,6 +82,11 @@
 
         &__item {
             display: none;
+
+            @media print {
+                display: block;
+                margin-bottom: 10px;
+            }
 
             @media @query-lg {
                 padding: 15px;

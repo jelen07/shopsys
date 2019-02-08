@@ -1,16 +1,30 @@
 .box-detail-add {
     margin-bottom: @margin-gap;
 
+    @media print {
+        form {
+            display: none;
+        }
+    }
+
     &__prices {
         margin-bottom: @margin-gap;
 
         &__item {
             color: @color-price;
 
+            @media print {
+                color: @color-0;
+            }
+
             &--main {
                 font-weight: bold;
                 font-size: 18px;
                 color: @color-price-main;
+
+                @media print {
+                    color: @color-0;
+                }
             }
         }
     }
