@@ -16,7 +16,7 @@ There you can find links to upgrade notes for other versions too.
     - `www_data_uid` and `www_data_gid` arguments are optional using an if condition (for building ci and production stage) ([#566](https://github.com/shopsys/shopsys/pull/566))
     - in a `ci` stage is a command to change the environment to keep building in `prod` environment ([#543](https://github.com/shopsys/shopsys/pull/543/files#diff-50a0e02c146dc64c2a172b42022589fa))
 - replace your `docker/php-fpm/docker-php-entrypoint` file with [version from GitHub]((https://github.com/shopsys/shopsys/blob/v7.0.0-beta3/project-base/docker/php-fpm/docker-php-entrypoint))
-- update `docker-compose-prod.yml` file
+- update `docker/conf/docker-compose-prod.yml` file
     - add new smtp container ([#530](https://github.com/shopsys/shopsys/pull/530))
         ```yaml
         smtp-server:
