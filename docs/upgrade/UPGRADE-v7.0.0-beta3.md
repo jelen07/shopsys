@@ -124,6 +124,7 @@ There you can find links to upgrade notes for other versions too.
                  <target name="tests-static" depends="tests-unit" description="Runs unit tests."/>
                  <target name="tests" depends="test-db-demo,tests-static,tests-functional,tests-smoke" description="Runs unit, functional and smoke tests on a newly built test database."/>
                 ```
+                *Note: `tests-functional` phing target was renamed from `tests-database` within `(low priority) rename Database tests to Functional tests` instruction*
     - `build.xml`
         - change `db-fixtures-demo-singledomain` command to `<arg value="doctrine:fixtures:load" />` and remove `--fixtures` argument
             because command `shopsys:fixtures:load` doesn't exist anymore ([#568](https://github.com/shopsys/shopsys/pull/568/files#diff-ae23427cd8e4dae17850f08f56308c3f))
@@ -228,7 +229,7 @@ There you can find links to upgrade notes for other versions too.
             'route_label' => $product->getMainVariant()->getName(),
         ]);
         ```
-- rename Database tests to Functional tests
+- *(low priority)* rename Database tests to Functional tests
     - rename base class `DatabaseTestCase` and its usages to `TransactionFunctionalTestCase`
     - rename test namespace `Database` to `Functional`
     - rename phing target `tests-db` to `tests-functional` and value of `--testsuite` from `Database` to `Functional`
