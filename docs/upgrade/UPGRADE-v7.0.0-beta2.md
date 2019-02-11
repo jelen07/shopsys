@@ -6,7 +6,7 @@ This guide contains instructions to upgrade from version v7.0.0-beta1 to v7.0.0-
 There you can find links to upgrade notes for other versions too.
 
 ## [shopsys/project-base]
-- *(optional)* [#497 adding php.ini to image is now done only in dockerfiles](https://github.com/shopsys/shopsys/pull/497)
+- *(low priority)* [#497 adding php.ini to image is now done only in dockerfiles](https://github.com/shopsys/shopsys/pull/497)
     - you should make the same changes in your repository for the php.ini configuration files to be added to your Docker images
         - remove all volumes from `docker-compose.yml.dist` templates that include `php-ini-overrides.ini`
             - remove them also from your local `docker-compose.yml`
@@ -17,7 +17,7 @@ There you can find links to upgrade notes for other versions too.
     - url addresses to microservices have changed, you need to upgrade url address provided in `app/config/parameters.yml`
         - update parameter `microservice_product_search_url` from `microservice-product-search:8000` to `microservice-product-search`
         - update parameter `microservice_product_search_export_url`, from `microservice-product-search-export:8000` to `microservice-product-search-export`
-- *(optional)* when you upgrade `codeception/codeception` to version `2.5.0`, you have to change parameter `populate` to `true` in `tests/ShopBundle/Acceptance/acceptance.suite.yml`
+- *(low priority)* when you upgrade `codeception/codeception` to version `2.5.0`, you have to change parameter `populate` to `true` in `tests/ShopBundle/Acceptance/acceptance.suite.yml`
 - make changes in `composer.json`:
     - remove repositories:
         - `https://github.com/shopsys/doctrine2.git`
@@ -36,9 +36,9 @@ There you can find links to upgrade notes for other versions too.
         - creation of some database functions was moved from `create-domains-data` phing target to a new phing target `create-domains-db-functions`
     - modify your `build-dev.xml` according to this pull request
         - creation of some database functions was moved from `test-create-domains-data` phing target to a new phing target `test-create-domains-db-functions`
-- *(optional)* speed up composer in your `php-fpm` container by adding `RUN composer global require hirak/prestissimo` into `docker/php-fpm/Dockerfile`
-- *(optional)* to enable logging of errors in the `php-fpm` container, add `log_errors = true` to `docker/php-fpm/php-ini-overrides.ini`
-- *(optional)* make changes in `composer.json`:
+- *(low priority)* speed up composer in your `php-fpm` container by adding `RUN composer global require hirak/prestissimo` into `docker/php-fpm/Dockerfile`
+- *(low priority)* to enable logging of errors in the `php-fpm` container, add `log_errors = true` to `docker/php-fpm/php-ini-overrides.ini`
+- *(low priority)* make changes in `composer.json`:
     - remove conflict `"codeception/stub"`, the conflicting version doesn't exist anymore and conflict is solved
     - change conflict of `"symfony/dependency-injection"` to `"3.4.15|3.4.16"`
 
