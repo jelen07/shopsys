@@ -159,6 +159,27 @@ for instance:
     - if you have extended `CountryController` revise your changes – `new` and `edit` actions were added
 - if you have extended `Localization` class, you have to add type-hints to extended methods because they were added in the parent class ([#806](https://github.com/shopsys/shopsys/pull/806))
     - if you have extended method `Localization::getAdminLocale()` only to have administration in a different language than english, you can delete it and set parameter `shopsys.admin_locale` in your `parameters.yml` file instead
+- changed JS validation of forms in popup and login form in popup is now get by AJAX ([#782](https://github.com/shopsys/shopsys/pull/782))
+    - in `window.js` add options `textHeading = ''` and `cssClassHeading: ''` to `var defaults` and then add it to `$windowContent` and add div with `js-validation-errors` class to every popup.
+        - replace this:
+            ```javascript
+                  var $windowContent = $('<div class="js-window-content window-popup__in"></div>').html(options.content);
+            ```
+        - with this:
+            ```javascript
+                  var $windowContent = $('<div class="js-window-content window-popup__in"></div>');
+
+                  if (options.textHeading !== '') {
+                      $windowContent.append('<h2 class="' + options.cssClassHeading + '">' + options.textHeading + '</h2>');
+                  }
+
+                  $windowContent.append(
+                      '<div class="display-none in-message in-message--alert js-window-validation-errors"></div>'
+                      + options.content
+                  );
+            ```
+- *(optional)* change login form so it is loaded by AJAX and works with JS validation
+    - you can change it as it was done in this [commit](https://github.com/shopsys/shopsys/pull/782/commits/bb6dadfce1d588aa3e06a8ba7b117d3de7afc1ce)
 
 - if you have extended classes from `Shopsys\FrameworkBundle\Model`, `Shopsys\FrameworkBundle\Component` or `Shopsys\FrameworkBundle\DataFixtures\Demo` namespace ([#788](https://github.com/shopsys/shopsys/pull/788))
     - you need to adjust extended methods and fields to `protected` visibility because all `private` visibilities from these namespaces were changed to `protected`
