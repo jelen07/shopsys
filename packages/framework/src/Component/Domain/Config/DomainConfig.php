@@ -34,7 +34,7 @@ class DomainConfig
     /**
      * @var string|null
      */
-    private $designId;
+    protected $designId;
 
     /**
      * @param int $id
