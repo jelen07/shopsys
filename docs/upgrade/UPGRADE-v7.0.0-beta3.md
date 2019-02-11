@@ -26,7 +26,7 @@ There you can find links to upgrade notes for other versions too.
                 - shopsys-network
         ```
     - remove smtp row from `extra_hosts` ([#530](https://github.com/shopsys/shopsys/pull/530))
-    - check whether there exists `depends_on` property between websercer and php-fpm services since this is needed for functional volume mounting (see [#598](https://github.com/shopsys/shopsys/pull/598))
+    - check whether there exists `depends_on` property between webserver and php-fpm services since this is needed for functional volume mounting (see [#598](https://github.com/shopsys/shopsys/pull/598))
 - update `docker-compose.yml` file
     - update php-fpm build configuration ([#533](https://github.com/shopsys/shopsys/pull/533))
         - change `context` to current directory (`.`)
