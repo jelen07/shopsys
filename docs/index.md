@@ -48,6 +48,7 @@ Add:
 * [Product Visibility and Exclude from Sale](./functional/product-visibility-and-exclude-from-sale.md)
 
 ## Frontend
+* [Design implementation and Customization](frontend/design-implementation-and-customization.md)
 * [Introduction to LESS](./frontend/introduction-to-less.md)
 * [Frontend Troubleshooting](./frontend/frontend-troubleshooting.md)
 
