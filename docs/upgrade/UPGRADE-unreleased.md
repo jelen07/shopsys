@@ -179,8 +179,8 @@ for instance:
                       + options.content
                   );
             ```
-- *(optional)* change login form so it is loaded by AJAX and works with JS validation
-    - you can change it as it was done in this [commit](https://github.com/shopsys/shopsys/pull/782/commits/bb6dadfce1d588aa3e06a8ba7b117d3de7afc1ce)
+- *(optional)* change login form so it is loaded by AJAX and works with JS validation and change `Login/windowForm.html.twig`, `Login/loginForm.html.twig` and `header.html.twig` templates
+    - you can change it as it was done in this [commit](https://github.com/shopsys/shopsys/pull/782/commits/0e7cf1e615563e804657d7b96ef335617461236c)
 
 - if you have extended classes from `Shopsys\FrameworkBundle\Model`, `Shopsys\FrameworkBundle\Component` or `Shopsys\FrameworkBundle\DataFixtures\Demo` namespace ([#788](https://github.com/shopsys/shopsys/pull/788))
     - you need to adjust extended methods and fields to `protected` visibility because all `private` visibilities from these namespaces were changed to `protected`
