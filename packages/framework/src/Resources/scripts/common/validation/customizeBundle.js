@@ -444,21 +444,19 @@
         var $formattedFormErrors = Shopsys.validation.getFormattedFormErrors(container);
         var $window = $('#js-window');
 
+        var $errorListHtml = '<div class="text-left">'
+            + Shopsys.translator.trans('Please check the entered values.<br><br>')
+            + $formattedFormErrors[0].outerHTML
+            + '</div>';
+
         if ($window.length === 0) {
             Shopsys.window({
-                content:
-                    '<div class="text-left">'
-                    + Shopsys.translator.trans('Please check the entered values.<br><br>')
-                    + $formattedFormErrors[0].outerHTML
-                    + '</div>'
+                content: $errorListHtml
+
             });
         } else {
             $window.filterAllNodes('.js-window-validation-errors')
-                .html(
-                    '<div class="text-left">'
-                    + Shopsys.translator.trans('Please check the entered values.<br><br>')
-                    + $formattedFormErrors[0].outerHTML
-                    + '</div>')
+                .html($errorListHtml)
                 .removeClass('display-none');
         }
 
