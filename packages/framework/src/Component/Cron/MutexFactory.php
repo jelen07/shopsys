@@ -29,14 +29,21 @@ class MutexFactory
     }
 
     /**
+     * @param string|null $prefix
      * @return \NinjaMutex\Mutex
      */
-    public function getCronMutex()
+    public function getCronMutex(string $prefix = null)
     {
-        if (!array_key_exists(self::MUTEX_CRON_NAME, $this->mutexesByName)) {
-            $this->mutexesByName[self::MUTEX_CRON_NAME] = new Mutex(self::MUTEX_CRON_NAME, $this->lock);
+        $lockName = self::MUTEX_CRON_NAME;
+
+        if ($prefix !== null) {
+            $lockName = $prefix . '-' . $lockName;
         }
 
-        return $this->mutexesByName[self::MUTEX_CRON_NAME];
+        if (!array_key_exists($lockName, $this->mutexesByName)) {
+            $this->mutexesByName[$lockName] = new Mutex($lockName, $this->lock);
+        }
+
+        return $this->mutexesByName[$lockName];
     }
 }

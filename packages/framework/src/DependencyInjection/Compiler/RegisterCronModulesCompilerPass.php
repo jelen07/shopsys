@@ -26,6 +26,7 @@ class RegisterCronModulesCompilerPass implements CompilerPassInterface
                         $serviceId,
                         $tag['hours'],
                         $tag['minutes'],
+                        $tag['instanceName'] ?? null,
                     ]
                 );
             }

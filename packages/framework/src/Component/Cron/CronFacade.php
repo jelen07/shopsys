@@ -60,12 +60,28 @@ class CronFacade
     }
 
     /**
+     * @param string $instanceName
+     */
+    public function runScheduledModulesForInstance(string $instanceName): void
+    {
+        $cronModuleExecutor = new CronModuleExecutor(self::TIMEOUT_SECONDS);
+
+        $cronModuleConfigs = $this->cronConfig->getCronModuleConfigsForInstance($instanceName);
+
+        $scheduledCronModuleConfigs = $this->cronModuleFacade->getOnlyScheduledCronModuleConfigs($cronModuleConfigs);
+        $this->runModules($cronModuleExecutor, $scheduledCronModuleConfigs, $instanceName);
+    }
+
+    /**
      * @param \Shopsys\FrameworkBundle\Component\Cron\CronModuleExecutor $cronModuleExecutor
      * @param \Shopsys\FrameworkBundle\Component\Cron\Config\CronModuleConfig[] $cronModuleConfigs
+     * @param string|null $instanceName
      */
-    protected function runModules(CronModuleExecutor $cronModuleExecutor, array $cronModuleConfigs)
+    protected function runModules(CronModuleExecutor $cronModuleExecutor, array $cronModuleConfigs, string $instanceName = null)
     {
-        $this->logger->addInfo('====== Start of cron ======');
+        $message = sprintf('cron%s', ($instanceName !== null ? " instance {$instanceName}" : ''));
+
+        $this->logger->addInfo("====== Start of $message ======");
 
         foreach ($cronModuleConfigs as $cronModuleConfig) {
             $this->runModule($cronModuleExecutor, $cronModuleConfig);
@@ -74,7 +90,7 @@ class CronFacade
             }
         }
 
-        $this->logger->addInfo('======= End of cron =======');
+        $this->logger->addInfo("======= End of $message =======");
     }
 
     /**
@@ -119,5 +135,24 @@ class CronFacade
     public function getAll()
     {
         return $this->cronConfig->getAllCronModuleConfigs();
+    }
+
+    /**
+     * @param string $instanceName
+     * @return \Shopsys\FrameworkBundle\Component\Cron\Config\CronModuleConfig[]
+     */
+    public function getAllForInstance(string $instanceName): array
+    {
+        return $this->cronConfig->getCronModuleConfigsForInstance($instanceName);
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getInstanceNames(): array
+    {
+        return array_unique(array_map(function (CronModuleConfig $config) {
+            return $config->getInstanceName();
+        }, $this->getAll()));
     }
 }
