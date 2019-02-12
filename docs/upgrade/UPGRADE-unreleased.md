@@ -159,7 +159,8 @@ for instance:
     - if you have extended `CountryController` revise your changes – `new` and `edit` actions were added
 - if you have extended `Localization` class, you have to add type-hints to extended methods because they were added in the parent class ([#806](https://github.com/shopsys/shopsys/pull/806))
     - if you have extended method `Localization::getAdminLocale()` only to have administration in a different language than english, you can delete it and set parameter `shopsys.admin_locale` in your `parameters.yml` file instead
-- changed JS validation of forms in popup and login form in popup is now get by AJAX ([#782](https://github.com/shopsys/shopsys/pull/782))
+- fixed JS validation of forms in popup windows ([#782](https://github.com/shopsys/shopsys/pull/782))
+    - login form in popup is now loaded via AJAX
     - in `window.js` add options `textHeading = ''` and `cssClassHeading: ''` to `var defaults` and then add it to `$windowContent` and add div with `js-validation-errors` class to every popup.
         - replace this:
             ```javascript
