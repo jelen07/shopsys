@@ -4,7 +4,7 @@ Here are the basic technologies we use in Shopsys Framework for design implement
     - the LESS files are located in `src/Shopsys/ShopBundle/Resources/styles`  
     - you can read more about LESS in separate article [Introduction to Less](./introduction-to-less.md)
 - [Grunt task runner](https://gruntjs.com/) for generation of CSS from LESS
-    - `Gruntfile.js` is generated from `src/Shopsys/ShopBundle/Resources/views/Grunt/gruntfile.js.twig` during application build using `gruntfile` [phing target](../introduction/console-commands-for-application-management-phing-targets.md)
+    - `Gruntfile.js` is generated from `src/Shopsys/ShopBundle/Resources/views/Grunt/gruntfile.js.twig` during application build using `gruntfile` by [phing target](../introduction/console-commands-for-application-management-phing-targets.md)
 - [Twig templating engine](https://twig.symfony.com/) for definition of HTML (and other) templates
     - the Twig templates are located in `src/Shopsys/ShopBundle/Resources/views`
 
